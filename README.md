@@ -1,203 +1,117 @@
 
+# 🚗 Vehicle Digital Twin using AUTOSAR Classic Signals + AWS IoT (Serverless)
 
-Vehicle Digital Twin using AUTOSAR Signals + AWS IoT (Serverless)
+![Image](https://www.nxp.com/assets/images/en/blogs/BL-ARE-DIGITAL-TWIN-1-1.jpg)
 
-AUTOSAR • AWS IoT • AWS Lambda • AWS DynamoDB • AWS API Gateway • Serverless Framework
+![Image](https://miro.medium.com/v2/resize%3Afit%3A1400/1%2AIvAV10E6FgOEem0a19sMeQ.jpeg)
 
-Website • Documentation • GitHub • Community • Forum
+![Image](https://docs.aws.amazon.com/images/architecture-diagrams/latest/aws-connected-vehicle/images/1-modernization.png)
 
-🚗 Vehicle Digital Twin – AUTOSAR + AWS Serverless
+---
 
-Vehicle Digital Twin using AUTOSAR Signals + AWS IoT and Serverless is a reference architecture and open-source project that demonstrates how AUTOSAR Classic & Adaptive signals from an embedded automotive ECU can be streamed to the cloud and represented as a real-time digital twin using serverless AWS services.
+## 📌 Overview
 
-This project is designed for AUTOSAR engineers, embedded developers, and cloud/IoT architects who want to bridge automotive ECUs with cloud-native digital twins—without relying on proprietary tools like Vector DaVinci.
+This project demonstrates an **end-to-end Vehicle Digital Twin** by integrating **AUTOSAR Classic ECU signals** with **AWS IoT and serverless services**.
 
-🔧 Technology Stack
-Automotive / Embedded
+AUTOSAR signals are **simulated without proprietary tools**, securely published to **AWS IoT Core**, processed using **AWS Lambda**, and stored in **Amazon DynamoDB** to maintain a **cloud-side digital twin of the vehicle**.
 
-AUTOSAR Classic (ARXML, SWC, RTE, BSW – simulated)
+---
 
-AUTOSAR Adaptive (C++ / ara::com – simulated)
+## 🎯 Project Objectives
 
-Vehicle signals (Speed, RPM, Temperature, Gear, SOC)
+* Simulate **AUTOSAR Classic signal flow**
+* Publish vehicle telemetry using **MQTT over TLS**
+* Build a **serverless backend**
+* Maintain a **real-time vehicle digital twin**
+* Store historical telemetry for analysis
+* Demonstrate **automotive + cloud integration**
 
-Cloud & Serverless
+---
 
-Amazon Web Services
+## 🧠 What This Project Demonstrates
 
-AWS IoT Core (MQTT)
+* AUTOSAR Classic architecture understanding
+* ECU → Cloud telemetry pipeline
+* Secure AWS IoT communication
+* Serverless design (no EC2)
+* Digital Twin concept for connected vehicles
 
-AWS Lambda (Python)
+---
 
-AWS DynamoDB
+## 🧩 AUTOSAR Classic Architecture Mapping
 
-AWS API Gateway (REST)
+![Image](https://www.embitel.com/wp-content/uploads/1-AUTOSAR-Archtecture.jpg)
 
-AWS IAM
+![Image](https://embetronicx.b-cdn.net/wp-content/uploads/2024/03/Virtual-Function-Bus.webp)
 
-Serverless Framework (v4)
+| AUTOSAR Layer     | Implementation                      |
+| ----------------- | ----------------------------------- |
+| Application Layer | Vehicle signal generation           |
+| RTE               | Signal read abstraction (simulated) |
+| COM Stack         | Signal packaging & transmission     |
+| BSW               | Communication abstraction           |
+| MCAL              | Hardware abstraction (simulated)    |
 
-🌐 High-Level Architecture
+> Proprietary tools (Vector / DaVinci) are intentionally avoided.
+> AUTOSAR behavior is **functionally simulated** while preserving signal semantics.
 
-Data Flow
+---
 
-AUTOSAR ECU (Classic / Adaptive) generates vehicle signals
+## 📡 AUTOSAR Signals Used
 
-Signals are published via MQTT to AWS IoT Core
+| Signal Name  | Type    | Description                |
+| ------------ | ------- | -------------------------- |
+| VehicleSpeed | uint16  | Vehicle speed (km/h)       |
+| EngineRPM    | uint16  | Engine RPM                 |
+| FuelLevel    | uint8   | Fuel percentage            |
+| CoolantTemp  | sint8   | Engine coolant temperature |
+| DoorStatus   | boolean | Door open / close          |
 
-IoT Rules trigger AWS Lambda functions
+---
 
-Lambda updates the Digital Twin state in DynamoDB
+## 🧰 Technology Stack
 
-API Gateway exposes REST APIs to query vehicle state
+* **AUTOSAR**: Classic Platform (Simulated)
+* **Language**: Python
+* **Cloud**: AWS
+* **IoT Protocol**: MQTT
+* **Compute**: AWS Lambda
+* **Database**: DynamoDB
+* **Storage**: S3
+* **Frontend**: HTML + JavaScript
 
-Frontend dashboard visualizes live vehicle data
+---
 
-✨ Key Features
+## ⚙️ Digital Twin Logic
 
-📡 AUTOSAR signal-to-cloud pipeline
+The **Digital Twin** maintains:
 
-☁️ Fully serverless (no EC2, no containers)
+* Current vehicle state
+* Overspeed detection
+* Last update timestamp
+* Cloud-side representation of ECU data
 
-🧩 Works without Vector DaVinci / CANoe
+**Example Rule**
 
-🔁 Real-time Digital Twin updates
+* Speed > 100 km/h → Overspeed Alert
 
-📊 Cloud-native telemetry storage
+---
 
-🔐 IAM-based security and isolation
+## 🔐 Security Design
 
-🚀 Ready for AWS Community Builder / portfolio use
+* Mutual TLS (X.509 certificates)
+* Least-privilege IoT policies
+* IAM-based Lambda permissions
+* Topic-level access control
 
+---
 
-🚀 Why Serverless for Automotive Digital Twins?
+## 🧪 Test Scenarios
 
-The Serverless Framework makes it easy to deploy Lambda, DynamoDB, IoT rules, and APIs together using simple YAML—perfect for scalable automotive telemetry workloads.
+* Overspeed detection
+* Fuel low condition
+* Door open alert
+* Missing or invalid signal handling
 
-Benefits
+---
 
-Zero infrastructure management
-
-Auto-scaling for thousands of vehicles
-
-Pay-per-use (idle = ₹0)
-
-Fast iteration and deployment
-
-Ideal for PoCs and production
-
-⚙️ Features in This Project
-AUTOSAR Side
-
-Custom-written ARXML (no DaVinci)
-
-Simulated BSW (CanIf, Com)
-
-Classic SWC signal generation
-
-Adaptive AUTOSAR MQTT publisher
-
-Cloud Side
-
-IoT Core MQTT topics per vehicle
-
-Lambda-based Digital Twin updater
-
-DynamoDB schema per Vehicle ID
-
-REST APIs for:
-
-Get live vehicle state
-
-Get historical snapshots
-
-🚀 Quick Start
-Prerequisites
-
-Node.js ≥ 18
-
-Python ≥ 3.10
-
-AWS Account
-
-AWS CLI configured
-
-Serverless Framework v4
-
-Install Serverless Framework
-npm install -g serverless
-serverless --version
-
-☁️ Deploy Cloud Infrastructure
-cd infrastructure
-serverless deploy
-
-
-This deploys:
-
-AWS IoT Rules
-
-AWS Lambda functions
-
-DynamoDB tables
-
-API Gateway endpoints
-
-📡 Publish AUTOSAR Signals (Simulation)
-cd autosar-adaptive
-mkdir build && cd build
-cmake ..
-make
-./vehicle_publisher
-
-
-Signals are published to:
-
-iot/vehicle/{vehicleId}/telemetry
-
-🔍 Query Digital Twin
-curl https://<api-id>.execute-api.<region>.amazonaws.com/dev/vehicle/VIN123
-
-🧪 Local Development
-serverless dev
-
-
-Live AWS events
-
-Local Lambda execution
-
-No repeated deployments
-
-🧩 Example AUTOSAR Signals
-Signal Name	Description
-VehicleSpeed	km/h
-EngineRPM	RPM
-GearPosition	P/N/D/R
-BatterySOC	%
-CoolantTemp	°C
-📈 Use Cases
-
-Vehicle Digital Twin
-
-Fleet Telemetry
-
-Predictive Maintenance
-
-OTA readiness simulation
-
-Automotive cloud PoCs
-
-AWS Community Builder projects
-
-🛡️ Security
-
-AWS IoT certificates per device
-
-IAM least-privilege roles
-
-Encrypted DynamoDB storage
-
-📜 License
-
-MIT License
-Free to use for learning, demos, and community contributions.
