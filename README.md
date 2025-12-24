@@ -69,30 +69,6 @@ AUTOSAR signals are **simulated without proprietary tools**, securely published 
 
 ---
 
-## 🏗️ System Architecture
-
-```
-AUTOSAR Classic ECU (Simulated)
-        |
-        v
-MQTT Client (TLS)
-        |
-        v
-AWS IoT Core
-        |
-        v
-IoT Rule
-        |
-        v
-AWS Lambda
-        |
-        +--> DynamoDB (Live Digital Twin)
-        |
-        +--> S3 (Historical Data)
-```
-
----
-
 ## 🧰 Technology Stack
 
 * **AUTOSAR**: Classic Platform (Simulated)
@@ -103,35 +79,6 @@ AWS Lambda
 * **Database**: DynamoDB
 * **Storage**: S3
 * **Frontend**: HTML + JavaScript
-
----
-
-## 📁 Repository Structure
-
-```
-vehicle-digital-twin/
-│
-├── autosar-classic/
-│   ├── signal_generator.py
-│   ├── rte_simulator.py
-│   └── com_stack.py
-│
-├── mqtt-client/
-│   └── publish_to_iot.py
-│
-├── lambda/
-│   ├── realtime_processor.py
-│   └── store_digital_twin.py
-│
-├── dashboard/
-│   └── index.html
-│
-├── architecture/
-│   └── architecture.png
-│
-├── requirements.txt
-└── README.md
-```
 
 ---
 
