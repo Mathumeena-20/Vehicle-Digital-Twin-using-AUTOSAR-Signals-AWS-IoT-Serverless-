@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>Deployment</SHORT-NAME>
+      <ELEMENTS>
+
+        <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+          <SHORT-NAME>VehicleServiceSOMEIP</SHORT-NAME>
+          <SERVICE-INTERFACE-TREF
+            DEST="SERVICE-INTERFACE">
+            /Services/VehicleTelemetryService
+          </SERVICE-INTERFACE-TREF>
+        </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
