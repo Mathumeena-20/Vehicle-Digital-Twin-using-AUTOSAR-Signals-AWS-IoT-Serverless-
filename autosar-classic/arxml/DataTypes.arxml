@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>DataTypes</SHORT-NAME>
+      <ELEMENTS>
+        <INTEGER-TYPE>
+          <SHORT-NAME>uint16</SHORT-NAME>
+        </INTEGER-TYPE>
+        <INTEGER-TYPE>
+          <SHORT-NAME>int8</SHORT-NAME>
+        </INTEGER-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
