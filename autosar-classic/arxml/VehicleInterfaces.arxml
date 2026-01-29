@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>Interfaces</SHORT-NAME>
+      <ELEMENTS>
+
+        <SENDER-RECEIVER-INTERFACE>
+          <SHORT-NAME>VehicleSignalInterface</SHORT-NAME>
+          <DATA-ELEMENTS>
+
+            <VARIABLE-DATA-PROTOTYPE>
+              <SHORT-NAME>VehicleSpeed</SHORT-NAME>
+              <TYPE-TREF DEST="INTEGER-TYPE">/DataTypes/uint16</TYPE-TREF>
+            </VARIABLE-DATA-PROTOTYPE>
+
+            <VARIABLE-DATA-PROTOTYPE>
+              <SHORT-NAME>EngineRPM</SHORT-NAME>
+              <TYPE-TREF DEST="INTEGER-TYPE">/DataTypes/uint16</TYPE-TREF>
+            </VARIABLE-DATA-PROTOTYPE>
+
+            <VARIABLE-DATA-PROTOTYPE>
+              <SHORT-NAME>CoolantTemp</SHORT-NAME>
+              <TYPE-TREF DEST="INTEGER-TYPE">/DataTypes/int8</TYPE-TREF>
+            </VARIABLE-DATA-PROTOTYPE>
+
+          </DATA-ELEMENTS>
+        </SENDER-RECEIVER-INTERFACE>
+
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
